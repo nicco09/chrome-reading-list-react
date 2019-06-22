@@ -1,26 +1,50 @@
 import React from 'react';
-import logo from './logo.svg';
+import ReadingList from './components/ReadingList';
+import Chrome from './utilities/chrome';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.chrome = new Chrome();
+    this.state = {
+      readingList: [],
+    };
+
+    this.handleRemoveBookmark = this.handleRemoveBookmark.bind(this);
+    this.handleOpenTab = this.handleOpenTab.bind(this);
+    this.updateReadingList = this.updateReadingList.bind(this);
+  }
+
+  async componentDidMount() {
+    await this.updateReadingList();
+  }
+
+  async updateReadingList() {
+    const readingList = await this.chrome.getReadingListAsync();
+    this.setState({ readingList })
+  }
+
+  async handleRemoveBookmark(id) {
+    await this.chrome.removeBookmarkAsync(id);
+    await this.updateReadingList();
+  }
+
+  async handleOpenTab(url) {
+    await this.chrome.openTabAsync(url);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <ReadingList
+          list={this.state.readingList}
+          open={this.handleOpenTab}
+          remove={this.handleRemoveBookmark} />
+      </div>
+    );
+  }
 }
 
 export default App;

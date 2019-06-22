@@ -1,0 +1,25 @@
+.ReadingList {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.ReadingList-list {
+  padding-inline-start: 0px;
+}
+
+.ReadingList-item {
+  display: flex;
+  align-items: center;
+}
+
+.ReadingList-image {
+  height: 16px;
+  width: 16px;
+}
