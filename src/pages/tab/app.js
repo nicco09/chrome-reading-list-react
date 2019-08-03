@@ -1,7 +1,6 @@
-import React from 'react';
-import ReadingList from './components/ReadingList';
-import Chrome from './utilities/chrome';
-import './App.css';
+import React from 'react'
+import ReadingList from 'Components/ReadingList';
+import Chrome from 'Utilities/chrome';
 
 class App extends React.Component {
   constructor() {
