@@ -12,6 +12,7 @@ function generateHtmlPlugins(items) {
   return items.map(
     name =>
       new HtmlWebpackPlugin({
+        title: "Reading List",
         filename: `./${name}.html`,
         chunks: [name]
       })

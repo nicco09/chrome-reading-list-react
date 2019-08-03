@@ -1,7 +1,7 @@
 import {
   LISTS_REFRESH_FULFILLED,
   LISTS_SET_ACTIVE
-} from '../../../shared/constants'
+} from 'Shared/constants'
 
 export default function listsReducer(state = {}, action) {
   switch (action.type) {

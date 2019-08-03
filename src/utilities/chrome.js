@@ -1,5 +1,4 @@
-/* global chrome */
-const util = require('util')
+import util from 'util'
 
 class Chrome {
   async getReadingListAsync() {
@@ -12,6 +11,19 @@ class Chrome {
         return subTree[0].children
       }
     }
+  }
+
+  async saveToReadingListAsync() {
+    const tab = await this.getCurrentTabAsync()
+    console.log(tab)
+    let parentId
+    let folders = await this.getReadingListFolderAsync()
+    if (!folders || folders.length === 0) {
+      parentId = (await this.createFolderAsync(this.READING_LIST_TITLE)).id
+    } else {
+      parentId = folders[0].id
+    }
+    await createBookmarkAsync(tab.title, tab.url, parentId)
   }
 
   getReadingListFolderAsync = util.promisify(callback => {
@@ -45,8 +57,8 @@ class Chrome {
   })
 
   getCurrentTabAsync = util.promisify(callback => {
-    chrome.tabs.getCurrent(tab => {
-      callback(null, tab)
+    chrome.tabs.query({ active: true, currentWindow: true }, arrayOfTabs => {
+      callback(null, arrayOfTabs[0])
     })
   })
 

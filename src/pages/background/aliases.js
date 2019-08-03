@@ -1,9 +1,9 @@
 import {
   LISTS_REFRESH_REQUESTED,
   URL_SUBMIT_REQUESTED
-} from '../../shared/constants'
+} from 'Shared/constants'
 
-import { fetchLists, submitURL } from '../../modules/ajax'
+import { fetchLists, submitURL } from 'Modules/ajax'
 
 const listsRefreshRequestedAlias = originalAction => {
   return (dispatch, getState) => {

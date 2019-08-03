@@ -1,31 +1,25 @@
-import React, { useState, useEffect } from "react"
-
-import "./Button.css"
+import React from 'react'
+import { Button as SemanticButton } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
+import './Button.css'
 
 const Button = ({ type, disabled, onClick, children }) => {
-    const [count, setCount] = useState(0);
-    useEffect(() => {
-        console.log("Hello");
-        
-        return () => {
-            console.log("Goodbye");
-        }
-    });
+  const handleOnClick = params => {
+    onClick(params)
+  }
 
-    const handleOnClick = params => {
-        setCount(count + 1);
-        onClick(params);
-    }
-
-    return (
-        <button
-            type={type}
-            disabled={disabled}
-            onClick={handleOnClick}
-            className="Button">
-            {`${children}: ${count}`}
-        </button>
-    );
+  return (
+    <SemanticButton
+      style={{ margin: '5px' }}
+      primary
+      type={type}
+      disabled={disabled}
+      onClick={handleOnClick}
+      className="Button"
+    >
+      {children}
+    </SemanticButton>
+  )
 }
 
-export default Button;
+export default Button

@@ -1,3 +1,3 @@
-import ReadingList from './ReadingList';
+import ReadingList from './ReadingList'
 
-export default ReadingList;
+export default ReadingList

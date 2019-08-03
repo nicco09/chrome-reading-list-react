@@ -1,13 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Dropdown, Button } from 'semantic-ui-react'
+import * as listActions from 'Shared/actions/listActions'
+import Chrome from 'Utilities/chrome';
 import 'semantic-ui-css/semantic.min.css'
-
-import * as listActions from '../../shared/actions/listActions'
 
 import { submitURL } from '../../modules/ajax'
 
 class App extends React.Component {
+  constructor() {
+    super();
+
+    this.chrome = new Chrome();
+    this.handleSaveToReadingList = this.handleSaveToReadingList.bind(this);
+  }
+
   componentWillMount() {
     const { lists, dispatch } = this.props
 
@@ -54,6 +61,10 @@ class App extends React.Component {
     dispatch(listActions.setActive(data.value))
   }
 
+  async handleSaveToReadingList() {
+    await this.chrome.saveToReadingListAsync()
+  }
+
   render() {
     const { lists } = this.props
 
@@ -80,6 +91,9 @@ class App extends React.Component {
           <div className="ui divider" />
           <Button primary onClick={() => this.submitCurrentURL()}>
             Save
+          </Button>
+          <Button primary onClick={() => this.handleSaveToReadingList()}>
+            Save to Reading List
           </Button>
         </div>
       </div>
