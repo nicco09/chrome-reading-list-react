@@ -1,6 +1,4 @@
 import React from 'react'
-import { Button as SemanticButton } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
 import './Button.css'
 
 const Button = ({ type, disabled, onClick, children }) => {
@@ -9,16 +7,15 @@ const Button = ({ type, disabled, onClick, children }) => {
   }
 
   return (
-    <SemanticButton
+    <button
       style={{ margin: '5px' }}
-      primary
       type={type}
       disabled={disabled}
       onClick={handleOnClick}
-      className="Button"
+      class="primary"
     >
       {children}
-    </SemanticButton>
+    </button>
   )
 }
 
