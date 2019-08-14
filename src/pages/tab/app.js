@@ -1,12 +1,16 @@
 import React from 'react'
-import ReadingList from 'Components/ReadingList';
-import Chrome from 'Utilities/chrome';
+import { connect } from 'react-redux'
+import ReadingList from 'Components/ReadingList'
+import {
+  getReadingListAsync,
+  removeBookmarkAsync,
+  openTabAsync
+} from 'Utilities/chrome'
 
 class App extends React.Component {
   constructor() {
     super();
-
-    this.chrome = new Chrome();
+    
     this.state = {
       readingList: [],
     };
@@ -17,21 +21,21 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    await this.updateReadingList();
+    await this.updateReadingList()
   }
 
   async updateReadingList() {
-    const readingList = await this.chrome.getReadingListAsync();
+    const readingList = await getReadingListAsync()
     this.setState({ readingList })
   }
 
   async handleRemoveBookmark(id) {
-    await this.chrome.removeBookmarkAsync(id);
-    await this.updateReadingList();
+    await removeBookmarkAsync(id)
+    await this.updateReadingList()
   }
 
   async handleOpenTab(url) {
-    await this.chrome.openTabAsync(url);
+    await openTabAsync(url)
   }
 
   render() {
@@ -40,10 +44,11 @@ class App extends React.Component {
         <ReadingList
           list={this.state.readingList}
           open={this.handleOpenTab}
-          remove={this.handleRemoveBookmark} />
+          remove={this.handleRemoveBookmark}
+        />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default connect(null, null)(App)

@@ -13,6 +13,7 @@ const listsRefreshRequestedAlias = originalAction => {
 
 const urlSubmitRequestedAlias = originalAction => {
   const { listId, url, title } = originalAction.payload
+  alert(originalAction)
 
   return (dispatch, getState) => {
     submitURL(dispatch, listId, url, title)

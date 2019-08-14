@@ -1,20 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Dropdown, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import * as listActions from 'Shared/actions/listActions'
-import Chrome from 'Utilities/chrome';
+import { saveToReadingListAsync } from 'Utilities/chrome';
 import 'semantic-ui-css/semantic.min.css'
 
-import { submitURL } from '../../modules/ajax'
-
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.chrome = new Chrome();
-    this.handleSaveToReadingList = this.handleSaveToReadingList.bind(this);
-  }
-
   componentWillMount() {
     const { lists, dispatch } = this.props
 
@@ -49,6 +40,8 @@ class App extends React.Component {
         const url = activeTab.url
         const title = activeTab.title
 
+        alert(url)
+
         dispatch(listActions.requestURLSubmit(activeListId, url, title))
         window.close()
       }
@@ -62,7 +55,8 @@ class App extends React.Component {
   }
 
   async handleSaveToReadingList() {
-    await this.chrome.saveToReadingListAsync()
+    await saveToReadingListAsync()
+    window.close()
   }
 
   render() {
@@ -78,20 +72,8 @@ class App extends React.Component {
     })
 
     return (
-      <div className="ui grid divided container">
+      <div className="ui grid container">
         <div className="ui one wide column">
-          <br />
-          <Dropdown
-            onChange={(_evt, data) => this.listChanged(data)}
-            selection
-            placeholder="Select List"
-            options={options}
-            defaultValue={this.optionWithDefaultValue(options)}
-          />
-          <div className="ui divider" />
-          <Button primary onClick={() => this.submitCurrentURL()}>
-            Save
-          </Button>
           <Button primary onClick={() => this.handleSaveToReadingList()}>
             Save to Reading List
           </Button>
