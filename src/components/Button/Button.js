@@ -8,7 +8,7 @@ const Button = ({ type, disabled, onClick, children }) => {
 
   return (
     <button
-      style={{ margin: '5px' }}
+      style={{ margin: '5px', width: '500px' }}
       type={type}
       disabled={disabled}
       onClick={handleOnClick}

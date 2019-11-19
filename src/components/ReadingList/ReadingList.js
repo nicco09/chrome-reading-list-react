@@ -20,13 +20,16 @@ const ReadingList = ({ list, open, remove }) => {
             >
               {site.title}
             </Button>
-            <Button
+
+            <button
+              style={{ margin: '5px' }}
+              className="primary"
               onClick={() => {
                 remove(site.id)
               }}
             >
               X
-            </Button>
+            </button>
           </li>
         ))}
       </ul>
