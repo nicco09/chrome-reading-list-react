@@ -12,7 +12,7 @@ function generateHtmlPlugins(items) {
   return items.map(
     name =>
       new HtmlWebpackPlugin({
-        title: "Reading List",
+        title: 'Reading List',
         filename: `./${name}.html`,
         chunks: [name]
       })
@@ -44,6 +44,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
         use: ['babel-loader']
       },
       {
