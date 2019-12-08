@@ -3,8 +3,8 @@ const CopyPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-require('babel-core/register')
-require('babel-polyfill')
+require("@babel/register");
+require("@babel/polyfill");
 
 const PAGES_PATH = './src/pages'
 
@@ -22,9 +22,9 @@ function generateHtmlPlugins(items) {
 module.exports = {
   mode: 'development',
   entry: {
-    background: ['babel-polyfill', `${PAGES_PATH}/background`],
-    popup: ['babel-polyfill', `${PAGES_PATH}/popup`],
-    tab: ['babel-polyfill', `${PAGES_PATH}/tab`]
+    background: ['@babel/polyfill', `${PAGES_PATH}/background`],
+    popup: ['@babel/polyfill', `${PAGES_PATH}/popup`],
+    tab: ['@babel/polyfill', `${PAGES_PATH}/tab`]
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],

@@ -1,12 +1,21 @@
 {
   "presets": [
-    "react",
-    "es2015",
-    "stage-2"
+    "@babel/preset-react",
+    "@babel/preset-env"
   ],
   "plugins": [
-    "transform-class-properties",
-    "transform-async-to-generator",
-    "transform-decorators-legacy"
+    "@babel/plugin-transform-async-to-generator",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ]
   ]
 }
